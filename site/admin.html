@@ -19,9 +19,51 @@
         </nav>
     </header>
     <main>
-        <section>
+        <section style="width: 100%; max-width: 900px; margin: 0 auto; background: #f5f5f5; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 32px;">
             <h2>Página do Administrador</h2>
             <p>Bem-vindo, administrador! Aqui você poderá gerenciar o conteúdo do site e visualizar mensagens enviadas pelo formulário de contato.</p>
+            <div class="cadastro-box" style="margin: 32px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <input type="text" id="buscaCadastro" placeholder="Buscar por nome ou email" style="width: 60%; padding: 12px; font-size: 1em; border-radius: 12px; border: 1px solid #3949ab;">
+                    <a href="cadastre-se.html" class="btn-primary" style="padding: 12px 24px; font-size: 1em; border-radius: 12px; background: #3949ab; color: #fff; text-decoration: none;">Novo Cadastro</a>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr style="background:#e8eaf6;">
+                                <th style="padding:8px; border-radius:12px;">Nome</th>
+                                <th style="padding:8px; border-radius:12px;">Email</th>
+                                <th style="padding:8px; border-radius:12px;">Nível-login</th>
+                                <th style="padding:8px; border-radius:12px;">ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaCadastros"></tbody>
+                    </table>
+                </div>
+            </div>
+            <script>
+                function renderCadastros(filtro = "") {
+                    let cadastros = localStorage.getItem('cadastroGeral');
+                    cadastros = cadastros ? JSON.parse(cadastros) : [];
+                    const lista = document.getElementById('listaCadastros');
+                    lista.innerHTML = "";
+                    cadastros.filter(c =>
+                        c.nome.toLowerCase().includes(filtro.toLowerCase()) ||
+                        c.email && c.email.toLowerCase().includes(filtro.toLowerCase())
+                    ).forEach(c => {
+                        lista.innerHTML += `<tr>
+                            <td style='padding:8px;'><a href='cadastre-se.html?id=${c.id}' style='color:#3949ab;text-decoration:underline;'>${c.nome}</a></td>
+                            <td style='padding:8px;'>${c.email || '-'}</td>
+                            <td style='padding:8px;'>${c.nivel || '-'}</td>
+                            <td style='padding:8px;'>${c.id}</td>
+                        </tr>`;
+                    });
+                }
+                document.getElementById('buscaCadastro').addEventListener('input', function() {
+                    renderCadastros(this.value);
+                });
+                renderCadastros();
+            </script>
             <!-- Área para futuras funcionalidades administrativas -->
             <script src="admin.js"></script>
             <script src="mensagens.js"></script>

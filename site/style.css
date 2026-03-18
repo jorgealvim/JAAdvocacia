@@ -1,3 +1,19 @@
+/* Bordas arredondadas em campos e botões */
+form input, form textarea, form select {
+    border-radius: 12px !important;
+}
+button, .btn-primary, .btn-google {
+    border-radius: 12px !important;
+}
+.cadastro-box, section, aside, div, .box {
+    border-radius: 12px !important;
+}
+/* Sombra nos campos de formulário ao focar */
+form input:focus, form textarea:focus, form select:focus {
+    box-shadow: 0 0 8px 2px #3949ab33;
+    border-color: #3949ab;
+    outline: none;
+}
 /* Box de cadastro */
 .cadastro-box {
     background: #e8eaf6;

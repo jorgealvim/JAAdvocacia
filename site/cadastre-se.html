@@ -20,8 +20,20 @@
         </nav>
     </header>
     <main>
-        <section>
-            <div id="cadastro-box"></div>
+        <section style="display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: 32px; flex-wrap: wrap; min-height: 60vh;">
+            <aside class="cadastro-box" style="width: 320px; min-height: 350px; margin-bottom: 24px;">
+                <h2 style="margin-bottom: 16px;">Login</h2>
+                <form id="login-form" style="width: 100%;">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required style="width: 100%; margin-bottom: 36px; height: 60px; font-size: 2em;">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" autocomplete="current-password" required style="width: 100%; margin-bottom: 36px; height: 60px; font-size: 2em;">
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-bottom: 36px; height: 60px; font-size: 2em;">Entrar</button>
+                </form>
+                <button id="google-login" class="btn-google" style="width: 100%; margin-bottom: 12px;">Entrar com Google</button>
+                <a href="#" id="esqueci-senha" class="link-aux">Esqueci minha senha</a>
+            </aside>
+            <div id="cadastro-box" class="cadastro-box" style="width: 100%; max-width: 600px; min-width: 320px; margin-bottom: 24px;"></div>
         </section>
     </main>
     <script src="cadastre-se.js"></script>

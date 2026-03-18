@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Níveis de Login - JA Advocacia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Jorge Alvim Advocacia</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="admin.html">Administrador</a></li>
+                <li><a href="cadastre-se.html">Cadastre-se</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main style="display: flex; justify-content: center; align-items: center; min-height: 60vh;">
+        <section style="width: 400px; background: #f5f5f5; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 32px;">
+            <h2 style="text-align: center; color: #1976d2;">Níveis de Login</h2>
+            <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
+                <div style="background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); padding: 16px; display: flex; flex-direction: column; align-items: center;">
+                    <button id="btnMaster" style="font-weight: bold; color: #1976d2; background: #e3f2fd; border: none; border-radius: 6px; padding: 12px 24px; margin-bottom: 8px; cursor: pointer;">Administrador Master</button>
+                    <p style="margin: 8px 0 0 0; font-size: 14px;">Acesso total ao sistema, gerenciamento de usuários e configurações avançadas.</p>
+                    <div id="masterBox" style="display:none; margin-top:16px; width:100%;">
+                        <form id="masterForm">
+                            <label for="nome">Nome:</label><input type="text" name="nome" id="nome" autocomplete="name" required style="width:100%; margin-bottom:8px;">
+                            <label for="email">Email:</label><input type="email" name="email" id="email" autocomplete="email" required style="width:100%; margin-bottom:8px;">
+                            <label for="senha">Senha:</label><input type="password" name="senha" id="senha" autocomplete="new-password" required style="width:100%; margin-bottom:8px;">
+                            <div style="margin-bottom:8px;">
+                                <label for="nivel">Nível:</label>
+                                <select name="nivel" id="nivel" required>
+                                    <option value="master">Master</option>
+                                    <option value="senior">Senior</option>
+                                    <option value="cliente">Cliente</option>
+                                </select>
+                            </div>
+                            <button type="submit" style="background:#1976d2;color:#fff;border:none;padding:8px 16px;border-radius:4px;">Salvar</button>
+                        </form>
+                        <div style="margin-top:16px;">
+                            <button id="buscarMaster" style="background:#388e3c;color:#fff;border:none;padding:8px 16px;border-radius:4px;margin-right:8px;">Buscar Masters</button>
+                            <button id="editarMaster" style="background:#1976d2;color:#fff;border:none;padding:8px 16px;border-radius:4px;margin-right:8px;">Editar</button>
+                            <button id="excluirMaster" style="background:#d32f2f;color:#fff;border:none;padding:8px 16px;border-radius:4px;">Excluir</button>
+                        </div>
+                        <div id="listaMasters" style="margin-top:16px;"></div>
+                    </div>
+                </div>
+            </div>
+            <script type="module">
+                // Firebase SDKs
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+                import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js";
+
+                const firebaseConfig = {
+                  apiKey: "AIzaSyBIYdJx9xuf1yXlfKbK73_XoirLRaQGaXo",
+                  authDomain: "jorgealvimadvocacia-23ce5.firebaseapp.com",
+                  projectId: "jorgealvimadvocacia-23ce5",
+                  storageBucket: "jorgealvimadvocacia-23ce5.firebasestorage.app",
+                  messagingSenderId: "839395120060",
+                  appId: "1:839395120060:web:493684582ae2c0da7811b9"
+                };
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+
+                document.getElementById('btnMaster').addEventListener('click', function() {
+                    const box = document.getElementById('masterBox');
+                    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+                });
+
+                // Salvar Master
+                document.getElementById('masterForm').addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const master = {};
+                    formData.forEach((value, key) => master[key] = value);
+                    // Verificar duplicidade
+                    let duplicado = false;
+                    try {
+                        const querySnapshot = await getDocs(collection(db, "masters"));
+                        querySnapshot.forEach((docSnap) => {
+                            const data = docSnap.data();
+                            if (data.email === master.email || data.nome === master.nome) {
+                                duplicado = true;
+                            }
+                        });
+                        let msg = document.getElementById('msgMaster');
+                        if (!msg) {
+                            msg = document.createElement('div');
+                            msg.id = 'msgMaster';
+                            msg.style.background = '#e3f2fd';
+                            msg.style.color = '#1976d2';
+                            msg.style.padding = '8px';
+                            msg.style.margin = '12px 0';
+                            msg.style.borderRadius = '4px';
+                            this.parentNode.insertBefore(msg, this);
+                        }
+                        if (duplicado) {
+                            msg.innerHTML = 'Master já tem cadastro! Deseja recuperar a senha? <button id="recuperarSenhaBtn" style="margin-left:8px;background:#1976d2;color:#fff;border:none;padding:4px 8px;border-radius:4px;">Sim</button>';
+                            document.getElementById('recuperarSenhaBtn').onclick = function() {
+                                window.location.href = 'index.html#esqueci-senha';
+                            };
+                            return;
+                        }
+                        await addDoc(collection(db, "masters"), master);
+                        msg.textContent = 'Master cadastrado com sucesso!';
+                        this.reset();
+                        listarMasters();
+                    } catch (err) {
+                        alert("Erro ao salvar: " + err.message);
+                        console.error("Erro ao salvar master:", err);
+                    }
+                });
+
+                // Buscar Masters
+                document.getElementById('buscarMaster').addEventListener('click', listarMasters);
+
+                async function listarMasters() {
+                    const lista = document.getElementById('listaMasters');
+                    lista.innerHTML = "";
+                    const querySnapshot = await getDocs(collection(db, "masters"));
+                    querySnapshot.forEach((docSnap) => {
+                        const data = docSnap.data();
+                        lista.innerHTML += `<div style='border-bottom:1px solid #ccc;padding:8px;'>
+                            <strong>${data.nome}</strong> | ${data.email} | Nível: ${data.nivel}
+                            <button onclick='editarMaster("${docSnap.id}")' style='margin-left:8px;background:#1976d2;color:#fff;border:none;padding:4px 8px;border-radius:4px;'>Editar</button>
+                            <button onclick='excluirMaster("${docSnap.id}")' style='margin-left:8px;background:#d32f2f;color:#fff;border:none;padding:4px 8px;border-radius:4px;'>Excluir</button>
+                        </div>`;
+                    });
+                }
+
+                // Editar Master
+                window.editarMaster = async function(id) {
+                    try {
+                        const docRef = doc(db, "masters", id);
+                        const querySnapshot = await getDocs(collection(db, "masters"));
+                        let data;
+                        querySnapshot.forEach((d) => { if (d.id === id) data = d.data(); });
+                        if (!data) {
+                            alert("Master não encontrado.");
+                            return;
+                        }
+                        const form = document.getElementById('masterForm');
+                        form.nome.value = data.nome;
+                        form.email.value = data.email;
+                        form.senha.value = data.senha;
+                        form.nivel.value = data.nivel;
+                        form.setAttribute('data-edit-id', id);
+                    } catch (err) {
+                        alert("Erro ao buscar master: " + err.message);
+                        console.error("Erro ao buscar master:", err);
+                    }
+                }
+
+                // Salvar edição
+                document.getElementById('masterForm').addEventListener('submit', async function(e) {
+                    if (this.hasAttribute('data-edit-id')) {
+                        e.preventDefault();
+                        const id = this.getAttribute('data-edit-id');
+                        const docRef = doc(db, "masters", id);
+                        const formData = new FormData(this);
+                        const master = {};
+                        formData.forEach((value, key) => master[key] = value);
+                        try {
+                            await updateDoc(docRef, master);
+                            alert("Master editado com sucesso!");
+                            this.reset();
+                            this.removeAttribute('data-edit-id');
+                            listarMasters();
+                        } catch (err) {
+                            alert("Erro ao editar: " + err.message);
+                            console.error("Erro ao editar master:", err);
+                        }
+                        return;
+                    }
+                });
+
+                // Excluir Master
+                window.excluirMaster = async function(id) {
+                    if (!confirm("Deseja realmente excluir este master?")) return;
+                    try {
+                        await deleteDoc(doc(db, "masters", id));
+                        alert("Master excluído.");
+                        listarMasters();
+                    } catch (err) {
+                        alert("Erro ao excluir: " + err.message);
+                        console.error("Erro ao excluir master:", err);
+                    }
+                }
+            </script>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Jorge Alvim Advocacia. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

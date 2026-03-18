@@ -8,6 +8,8 @@
 </head>
 <body>
     <header>
+        <div style="width:100%; text-align:center; padding: 18px 0 8px 0; font-size:2.2rem; font-weight:700; color:#fff; letter-spacing:1px; background:#3949ab; border-radius:12px;">Jorge Alvim Advocacia</div>
+        <!-- Links dos tribunais serão movidos para a direita do box maior -->
         <nav>
             <ul>
                 <li><a href="index.html">Início</a></li>
@@ -19,13 +21,257 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <section>
-            <h2>Bem-vindo ao JA Advocacia</h2>
-            <p>Seu escritório de advocacia especializado em soluções jurídicas.</p>
+    <main style="display: flex; flex-direction: row; width:100vw; min-height:520px; gap:0;">
+        <aside style="width: 320px; min-height: 350px; background: #f5f5f5; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 24px; margin: 0; display: flex; flex-direction: column; align-items: flex-start;">
+            <h2>Login</h2>
+            <form id="login-form" style="width: 100%;">
+                <label for="email">E-mail:</label><br>
+                <input type="email" id="email" name="email" style="width: 100%; margin-bottom: 12px;" required><br>
+                <label for="senha">Senha:</label><br>
+                <input type="password" id="senha" name="senha" style="width: 100%; margin-bottom: 12px;" required><br>
+                <button type="submit" style="width: 100%; margin-bottom: 12px;">Entrar</button>
+            </form>
+            <button id="google-login" style="width: 100%; background: #4285F4; color: #fff; border: none; padding: 8px; border-radius: 4px; margin-bottom: 12px;">Entrar com Google</button>
+            <a href="#" id="esqueci-senha" style="color: #4285F4; text-decoration: underline;">Esqueci minha senha</a>
+            <div id="esqueci-senha-box" style="display:none; width:100%; margin-top:16px;">
+                <form id="recupera-form">
+                    <label for="recupera-email">Informe seu e-mail:</label><br>
+                    <input type="email" id="recupera-email" name="recupera-email" style="width:100%; margin-bottom:8px;" required><br>
+                    <button type="submit" style="width:100%;">Enviar</button>
+                </form>
+                <div id="recupera-msg" style="margin-top:8px; color:#3949ab;"></div>
+            </div>
+        </aside>
+        <section style="flex: 1; display: flex; flex-direction: row; align-items: stretch; position: relative; z-index: 1; width:100%; margin:0;">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#fff; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.12); padding:0; margin:0; min-height:420px; width:100%;">
+                <h2 style="font-size:2.6rem; color:#3949ab; margin-bottom:18px;">Bem-vindo ao JA Advocacia</h2>
+                <p style="font-size:1.3rem; color:#222;">Seu escritório de advocacia especializado em soluções jurídicas.</p>
+            </div>
+            <nav style="min-width:260px; text-align:left; margin-left:0; margin-top:0; display:flex; flex-direction:column; gap:8px; background:#f5f5f5; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:24px 0; height:100%; align-items:flex-start;">
+                                                                                <button id="btn-oab" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; font-weight:500; border:none; cursor:pointer; text-align:left;">OAB ▼</button>
+                                                                                <div id="dropdown-oab" style="display:none; flex-direction:column; gap:6px; margin-top:4px; max-height:320px; overflow-y:auto;">
+                                                                                    <a href="https://www.oabac.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-AC</a>
+                                                                                    <a href="https://www.oabal.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-AL</a>
+                                                                                    <a href="https://www.oabam.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-AM</a>
+                                                                                    <a href="https://www.oabap.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-AP</a>
+                                                                                    <a href="https://www.oab-ba.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-BA</a>
+                                                                                    <a href="https://www.oabce.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-CE</a>
+                                                                                    <a href="https://www.oabdf.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-DF</a>
+                                                                                    <a href="https://www.oabes.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-ES</a>
+                                                                                    <a href="https://www.oabgo.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-GO</a>
+                                                                                    <a href="https://www.oabma.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-MA</a>
+                                                                                    <a href="https://www.oabmg.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-MG</a>
+                                                                                    <a href="https://www.oabms.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-MS</a>
+                                                                                    <a href="https://www.oabmt.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-MT</a>
+                                                                                    <a href="https://www.oabpa.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-PA</a>
+                                                                                    <a href="https://www.oabpb.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-PB</a>
+                                                                                    <a href="https://www.oabpe.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-PE</a>
+                                                                                    <a href="https://www.oabpi.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-PI</a>
+                                                                                    <a href="https://www.oabpr.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-PR</a>
+                                                                                    <a href="https://www.oabrj.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-RJ</a>
+                                                                                    <a href="https://www.oabrn.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-RN</a>
+                                                                                    <a href="https://www.oabro.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-RO</a>
+                                                                                    <a href="https://www.oabrr.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-RR</a>
+                                                                                    <a href="https://www.oabrs.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-RS</a>
+                                                                                    <a href="https://www.oabsc.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-SC</a>
+                                                                                    <a href="https://www.oabse.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-SE</a>
+                                                                                    <a href="https://www.oabsp.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-SP</a>
+                                                                                    <a href="https://www.oabto.org.br/" target="_blank" style="color:#fff; background:#b3e5fc; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">OAB-TO</a>
+                                                                                </div>
+                                                                <button id="btn-mp" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; font-weight:500; border:none; cursor:pointer; text-align:left;">Ministério Público ▼</button>
+                                                                <div id="dropdown-mp" style="display:none; flex-direction:column; gap:6px; margin-top:4px; max-height:320px; overflow-y:auto;">
+                                                                    <strong style="color:#3949ab; margin-bottom:4px;">Federal</strong>
+                                                                    <a href="https://www.mpf.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPF</a>
+                                                                    <strong style="color:#3949ab; margin-top:8px; margin-bottom:4px;">Estaduais</strong>
+                                                                    <a href="https://www.mpac.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPAC</a>
+                                                                    <a href="https://www.mpal.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPAL</a>
+                                                                    <a href="https://www.mpam.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPAM</a>
+                                                                    <a href="https://www.mpap.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPAP</a>
+                                                                    <a href="https://www.mpba.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPBA</a>
+                                                                    <a href="https://www.mpce.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPCE</a>
+                                                                    <a href="https://www.mpdft.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPDFT</a>
+                                                                    <a href="https://www.mpes.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPES</a>
+                                                                    <a href="https://www.mpgo.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPGO</a>
+                                                                    <a href="https://www.mpma.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPMA</a>
+                                                                    <a href="https://www.mpmg.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPMG</a>
+                                                                    <a href="https://www.mpms.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPMS</a>
+                                                                    <a href="https://www.mpmt.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPMT</a>
+                                                                    <a href="https://www.mppa.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPPA</a>
+                                                                    <a href="https://www.mppb.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPPB</a>
+                                                                    <a href="https://www.mppe.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPPE</a>
+                                                                    <a href="https://www.mppi.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPPI</a>
+                                                                    <a href="https://www.mppr.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPPR</a>
+                                                                    <a href="https://www.mprj.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPRJ</a>
+                                                                    <a href="https://www.mprn.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPRN</a>
+                                                                    <a href="https://www.mpro.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPRO</a>
+                                                                    <a href="https://www.mprr.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPRR</a>
+                                                                    <a href="https://www.mprs.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPRS</a>
+                                                                    <a href="https://www.mpsc.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPSC</a>
+                                                                    <a href="https://www.mpse.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPSE</a>
+                                                                    <a href="https://www.mpsp.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPSP</a>
+                                                                    <a href="https://www.mpto.mp.br/" target="_blank" style="color:#fff; background:#c5cae9; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">MPTO</a>
+                                                                </div>
+                                                <button id="btn-defensorias" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; font-weight:500; border:none; cursor:pointer; text-align:left;">Defensorias Públicas Estaduais ▼</button>
+                                                <div id="dropdown-defensorias" style="display:none; flex-direction:column; gap:6px; margin-top:4px; max-height:320px; overflow-y:auto;">
+                                                    <a href="https://www.defensoria.ac.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-AC</a>
+                                                    <a href="https://www.defensoria.al.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-AL</a>
+                                                    <a href="https://www.defensoria.am.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-AM</a>
+                                                    <a href="https://www.defensoria.ap.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-AP</a>
+                                                    <a href="https://www.defensoria.ba.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-BA</a>
+                                                    <a href="https://www.defensoria.ce.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-CE</a>
+                                                    <a href="https://www.defensoria.df.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-DF</a>
+                                                    <a href="https://www.defensoria.es.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-ES</a>
+                                                    <a href="https://www.defensoria.go.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-GO</a>
+                                                    <a href="https://www.defensoria.ma.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-MA</a>
+                                                    <a href="https://www.defensoria.mg.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-MG</a>
+                                                    <a href="https://www.defensoria.ms.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-MS</a>
+                                                    <a href="https://www.defensoria.mt.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-MT</a>
+                                                    <a href="https://www.defensoria.pa.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-PA</a>
+                                                    <a href="https://www.defensoria.pb.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-PB</a>
+                                                    <a href="https://www.defensoria.pe.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-PE</a>
+                                                    <a href="https://www.defensoria.pi.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-PI</a>
+                                                    <a href="https://www.defensoria.pr.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-PR</a>
+                                                    <a href="https://www.defensoria.rj.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-RJ</a>
+                                                    <a href="https://www.defensoria.rn.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-RN</a>
+                                                    <a href="https://www.defensoria.ro.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-RO</a>
+                                                    <a href="https://www.defensoria.rr.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-RR</a>
+                                                    <a href="https://www.defensoria.rs.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-RS</a>
+                                                    <a href="https://www.defensoria.sc.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-SC</a>
+                                                    <a href="https://www.defensoria.se.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-SE</a>
+                                                    <a href="https://www.defensoria.sp.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-SP</a>
+                                                    <a href="https://www.defensoria.to.def.br/" target="_blank" style="color:#fff; background:#8e99f3; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">DPE-TO</a>
+                                                </div>
+                                <button id="btn-estaduais" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; font-weight:500; border:none; cursor:pointer; text-align:left;">Tribunais de Justiça Estaduais ▼</button>
+                                <div id="dropdown-estaduais" style="display:none; flex-direction:column; gap:6px; margin-top:4px; max-height:320px; overflow-y:auto;">
+                                    <a href="https://www.tjac.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJAC</a>
+                                    <a href="https://www.tjal.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJAL</a>
+                                    <a href="https://www.tjam.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJAM</a>
+                                    <a href="https://www.tjap.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJAP</a>
+                                    <a href="https://www.tjba.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJBA</a>
+                                    <a href="https://www.tjce.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJCE</a>
+                                    <a href="https://www.tjdft.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJDFT</a>
+                                    <a href="https://www.tjes.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJES</a>
+                                    <a href="https://www.tjgo.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJGO</a>
+                                    <a href="https://www.tjma.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJMA</a>
+                                    <a href="https://www.tjmg.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJMG</a>
+                                    <a href="https://www.tjms.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJMS</a>
+                                    <a href="https://www.tjmt.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJMT</a>
+                                    <a href="https://www.tjpa.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJPA</a>
+                                    <a href="https://www.tjpb.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJPB</a>
+                                    <a href="https://www.tjpe.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJPE</a>
+                                    <a href="https://www.tjpi.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJPI</a>
+                                    <a href="https://www.tjpr.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJPR</a>
+                                    <a href="https://www.tjrj.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJRJ</a>
+                                    <a href="https://www.tjrn.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJRN</a>
+                                    <a href="https://www.tjro.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJRO</a>
+                                    <a href="https://www.tjrr.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJRR</a>
+                                    <a href="https://www.tjrs.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJRS</a>
+                                    <a href="https://www.tjsc.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJSC</a>
+                                    <a href="https://www.tjse.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJSE</a>
+                                    <a href="https://www.tjsp.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJSP</a>
+                                    <a href="https://www.tjto.jus.br/" target="_blank" style="color:#fff; background:#7986cb; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TJTO</a>
+                                </div>
+                <a href="https://www.stf.jus.br/" target="_blank" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">STF</a>
+                <a href="https://www.stj.jus.br/" target="_blank" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">STJ</a>
+                <a href="https://www.stm.jus.br/" target="_blank" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">STM</a>
+                <a href="https://www.tst.jus.br/" target="_blank" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TST</a>
+                <a href="https://www.tse.jus.br/" target="_blank" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TSE</a>
+                <button id="btn-federais" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; font-weight:500; border:none; cursor:pointer; text-align:left;">Tribunais Federais ▼</button>
+                <div id="dropdown-federais" style="display:none; flex-direction:column; gap:6px; margin-top:4px;">
+                    <a href="https://www.trf1.jus.br/" target="_blank" style="color:#fff; background:#5c6bc0; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TRF1</a>
+                    <a href="https://www.trf2.jus.br/" target="_blank" style="color:#fff; background:#5c6bc0; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TRF2</a>
+                    <a href="https://www.trf3.jus.br/" target="_blank" style="color:#fff; background:#5c6bc0; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TRF3</a>
+                    <a href="https://www.trf4.jus.br/" target="_blank" style="color:#fff; background:#5c6bc0; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TRF4</a>
+                    <a href="https://www.trf5.jus.br/" target="_blank" style="color:#fff; background:#5c6bc0; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TRF5</a>
+                    <a href="https://www.trf6.jus.br/" target="_blank" style="color:#fff; background:#5c6bc0; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TRF6</a>
+                </div>
+                <a href="https://www.tnu.jus.br/" target="_blank" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">TNU</a>
+                <a href="https://www.cnj.jus.br/" target="_blank" style="color:#fff; background:#3949ab; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:500;">CNJ</a>
+            </nav>
         </section>
     </main>
-    <footer>
+        <script type="module">
+                                                            // Dropdown OAB
+                                                            const btnOAB = document.getElementById('btn-oab');
+                                                            const dropdownOAB = document.getElementById('dropdown-oab');
+                                                            btnOAB.addEventListener('click', () => {
+                                                                dropdownOAB.style.display = dropdownOAB.style.display === 'none' ? 'flex' : 'none';
+                                                            });
+                                                // Dropdown Ministério Público
+                                                const btnMP = document.getElementById('btn-mp');
+                                                const dropdownMP = document.getElementById('dropdown-mp');
+                                                btnMP.addEventListener('click', () => {
+                                                    dropdownMP.style.display = dropdownMP.style.display === 'none' ? 'flex' : 'none';
+                                                });
+                                    // Dropdown Defensorias Públicas Estaduais
+                                    const btnDefensorias = document.getElementById('btn-defensorias');
+                                    const dropdownDefensorias = document.getElementById('dropdown-defensorias');
+                                    btnDefensorias.addEventListener('click', () => {
+                                        dropdownDefensorias.style.display = dropdownDefensorias.style.display === 'none' ? 'flex' : 'none';
+                                    });
+                        // Dropdown Tribunais Estaduais
+                        const btnEstaduais = document.getElementById('btn-estaduais');
+                        const dropdownEstaduais = document.getElementById('dropdown-estaduais');
+                        btnEstaduais.addEventListener('click', () => {
+                            dropdownEstaduais.style.display = dropdownEstaduais.style.display === 'none' ? 'flex' : 'none';
+                        });
+            // Importar módulos do Firebase
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+            import { getAuth, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+
+            // Configuração do Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyBIYdJx9xuf1yXlfKbK73_XoirLRaQGaXo",
+                authDomain: "jorgealvimadvocacia-23ce5.firebaseapp.com",
+                projectId: "jorgealvimadvocacia-23ce5",
+                storageBucket: "jorgealvimadvocacia-23ce5.firebasestorage.app",
+                messagingSenderId: "839395120060",
+                appId: "1:839395120060:web:493684582ae2c0da7811b9"
+            };
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const provider = new GoogleAuthProvider();
+
+            document.getElementById('google-login').addEventListener('click', async () => {
+                try {
+                    const result = await signInWithPopup(auth, provider);
+                    alert('Login com Google realizado! Usuário: ' + result.user.email);
+                } catch (error) {
+                    alert('Erro ao logar com Google: ' + error.message);
+                }
+            });
+
+            // Esqueci minha senha
+            const esqueciSenha = document.getElementById('esqueci-senha');
+            const esqueciBox = document.getElementById('esqueci-senha-box');
+            const recuperaForm = document.getElementById('recupera-form');
+            const recuperaMsg = document.getElementById('recupera-msg');
+
+            esqueciSenha.addEventListener('click', (e) => {
+                e.preventDefault();
+                esqueciBox.style.display = esqueciBox.style.display === 'none' ? 'block' : 'none';
+                recuperaMsg.textContent = '';
+            });
+
+            recuperaForm && recuperaForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('recupera-email').value;
+                try {
+                    await sendPasswordResetEmail(auth, email);
+                    recuperaMsg.textContent = 'Se o e-mail estiver cadastrado, você receberá instruções para redefinir sua senha.';
+                } catch (error) {
+                    recuperaMsg.textContent = 'Erro ao enviar instruções: ' + error.message;
+                }
+            });
+
+            // Dropdown Tribunais Federais
+            const btnFederais = document.getElementById('btn-federais');
+            const dropdownFederais = document.getElementById('dropdown-federais');
+            btnFederais.addEventListener('click', () => {
+                dropdownFederais.style.display = dropdownFederais.style.display === 'none' ? 'flex' : 'none';
+            });
+        </script>
+        <footer>
         <p>&copy; 2026 Jorge Alvim Advocacia. Todos os direitos reservados.</p>
     </footer>
 </body>
