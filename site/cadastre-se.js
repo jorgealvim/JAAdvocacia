@@ -1,73 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     const formContainer = document.querySelector('section');
-    // Verifica se há id na URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const cadastroId = urlParams.get('id');
-    let cadastros = localStorage.getItem('cadastroGeral');
-    cadastros = cadastros ? JSON.parse(cadastros) : [];
-    if (cadastroId) {
-        // Exibe dados do cadastro
-        const cadastro = cadastros.find(c => c.id === cadastroId);
-        if (!cadastro) {
-            formContainer.innerHTML = '<div style="color:red;">Cadastro não encontrado.</div>';
-            return;
-        }
-        let camposHtml = '';
-        Object.keys(cadastro).forEach(key => {
-            if (key === 'id') return;
-            camposHtml += `<div style='margin-bottom:8px;'><strong>${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> <span id="${key}">${cadastro[key] || '-'}</span></div>`;
-        });
-        formContainer.innerHTML = `
-            <h2>Dados do Cadastro</h2>
-            <div class="cadastro-box" style="max-width:600px;">
-                ${camposHtml}
-                <div><strong>ID:</strong> <span id="id">${cadastro.id}</span></div>
-                <button id="editarCadastro" class="btn-primary" style="margin:12px 8px 0 0;">Editar</button>
-                <button id="salvarCadastro" class="btn-primary" style="margin:12px 8px 0 0; display:none;">Salvar</button>
-                <button id="excluirCadastro" class="btn-google" style="margin:12px 0 0 0; background:#d32f2f;">Excluir</button>
-            </div>
-        `;
-        // Editar
-        document.getElementById('editarCadastro').onclick = function() {
-            Object.keys(cadastro).forEach(key => {
-                if (key === 'id') return;
-                const span = document.getElementById(key);
-                if (span) {
-                    let tipo = 'text';
-                    if (key === 'email') tipo = 'email';
-                    if (key === 'dataNascimento') tipo = 'date';
-                    span.innerHTML = `<input type='${tipo}' value='${cadastro[key] || ''}' id='edit_${key}' style='width:90%;'>`;
-                }
-            });
-            document.getElementById('salvarCadastro').style.display = 'inline-block';
-            this.style.display = 'none';
-        };
-        // Salvar
-        document.getElementById('salvarCadastro').onclick = function() {
-            Object.keys(cadastro).forEach(key => {
-                if (key === 'id') return;
-                const input = document.getElementById('edit_' + key);
-                if (input) cadastro[key] = input.value;
-            });
-            localStorage.setItem('cadastroGeral', JSON.stringify(cadastros));
-            alert('Cadastro atualizado!');
-            window.location.reload();
-        };
-        // Excluir
-        document.getElementById('excluirCadastro').onclick = function() {
-            if (confirm('Deseja realmente excluir este cadastro?')) {
-                const idx = cadastros.findIndex(c => c.id === cadastroId);
-                if (idx > -1) {
-                    cadastros.splice(idx, 1);
-                    localStorage.setItem('cadastroGeral', JSON.stringify(cadastros));
-                    alert('Cadastro excluído!');
-                    window.location.href = 'admin.html';
-                }
-            }
-        };
-        return;
-    }
-    // ...existing code...
     formContainer.innerHTML = `
         <h2>Cadastre-se</h2>
         <div id="cadastro-box">
@@ -79,17 +11,91 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="formPessoa"></div>
         </div>
     `;
-    // ...existing code...
+
     const tipoPessoa = document.getElementById('tipoPessoa');
     const formPessoa = document.getElementById('formPessoa');
+
     function renderForm(tipo) {
-        // ...existing code...
+        if (tipo === 'juridica') {
+            formPessoa.innerHTML = `
+                <form id="formJuridica">
+                    <label>Nome:</label><input type="text" name="nome" required>
+                    <label>Nome de Fantasia:</label><input type="text" name="nomeFantasia" required>
+                    <label>Endereço Completo:</label><input type="text" name="enderecoCompleto" required>
+                    <label>Rua:</label><input type="text" name="rua" required>
+                    <label>Número:</label><input type="text" name="numero" required>
+                    <label>Complemento:</label><input type="text" name="complemento">
+                    <label>Bairro:</label><input type="text" name="bairro" required>
+                    <label>Cidade:</label><input type="text" name="cidade" required>
+                    <label>Estado:</label><input type="text" name="estado" required>
+                    <label>CNPJ:</label><input type="text" name="cnpj" required>
+                    <label>E-mail:</label><input type="email" name="email" required>
+                    <label>Telefone WhatsApp:</label><input type="text" name="whatsapp" required>
+                    <label>Responsável Jurídico:</label><input type="text" name="responsavelJuridico" required>
+                    <label>Login:</label><input type="text" name="login" required>
+                    <label>Senha:</label><input type="password" name="senha" required>
+                    <label>Confirme a Senha:</label><input type="password" name="confirmaSenha" required>
+                    <button type="submit">Salvar</button>
+                </form>
+            `;
+        } else {
+            formPessoa.innerHTML = `
+                <form id="formFisica">
+                    <label>Nome:</label><input type="text" name="nome" required>
+                    <label>Endereço Completo:</label><input type="text" name="enderecoCompleto" required>
+                    <label>Rua:</label><input type="text" name="rua" required>
+                    <label>Número:</label><input type="text" name="numero" required>
+                    <label>Complemento:</label><input type="text" name="complemento">
+                    <label>Bairro:</label><input type="text" name="bairro" required>
+                    <label>Cidade:</label><input type="text" name="cidade" required>
+                    <label>Estado:</label><input type="text" name="estado" required>
+                    <label>CNPJ:</label><input type="text" name="cnpj">
+                    <label>E-mail:</label><input type="email" name="email" required>
+                    <label>Telefone WhatsApp:</label><input type="text" name="whatsapp" required>
+                    <label>Responsável Jurídico:</label><input type="text" name="responsavelJuridico" required>
+                    <label>Número do CPF:</label><input type="text" name="cpf" required>
+                    <label>Identidade:</label><input type="text" name="identidade" required>
+                    <label>Nome do Pai:</label><input type="text" name="pai" required>
+                    <label>Nome da Mãe:</label><input type="text" name="mae" required>
+                    <label>Data de Nascimento:</label><input type="date" name="dataNascimento" required>
+                    <label>Local de Trabalho:</label><input type="text" name="localTrabalho">
+                    <label>Login:</label><input type="text" name="login" required>
+                    <label>Senha:</label><input type="password" name="senha" required>
+                    <label>Confirme a Senha:</label><input type="password" name="confirmaSenha" required>
+                    <button type="submit">Salvar</button>
+                </form>
+            `;
+        }
+        bindFormSubmit(tipo);
     }
+
     tipoPessoa.addEventListener('change', function() {
         renderForm(this.value);
     });
+
     renderForm(tipoPessoa.value);
+
     function bindFormSubmit(tipo) {
-        // ...existing code...
+        const form = tipo === 'juridica' ? document.getElementById('formJuridica') : document.getElementById('formFisica');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const dados = {};
+            Array.from(form.elements).forEach(el => {
+                if (el.name) dados[el.name] = el.value;
+            });
+            // Validação de senha
+            if (dados['senha'] !== dados['confirmaSenha']) {
+                alert('As senhas não coincidem.');
+                return;
+            }
+            // Simulação de salvamento local
+            let cadastros = localStorage.getItem('cadastroGeral');
+            cadastros = cadastros ? JSON.parse(cadastros) : [];
+            cadastros.push(dados);
+            localStorage.setItem('cadastroGeral', JSON.stringify(cadastros));
+            // Mensagem de sucesso
+            alert('Cadastro salvo com sucesso!');
+            window.location.href = 'index.html';
+        });
     }
 });
